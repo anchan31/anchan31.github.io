@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For My Love 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .container {
+      text-align: center;
+    }
+    /* Heart SVG Style: Emoji-like */
+    .heart-wrapper {
+      width: 220px;
+      height: 210px;
+      margin: 0 auto 28px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .heart {
+      width: 210px;
+      height: 210px;
+      filter: drop-shadow(0 0 18px #fd59b0bb) drop-shadow(0 0 10px #fff3);
+      transition: transform 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    .heart.break {
+     animation: heartBreak 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes heartBreak {
+  0%   { transform: scale(1) rotate(0deg); }
+  20%  { transform: scale(1.15) rotate(6deg); }
+  40%  { transform: scale(1.25) rotate(-4deg); }
+  60%  { transform: scale(1.8) rotate(3deg); }
+  80%  { transform: scale(2.4) rotate(-2deg); }
+  100% { transform: scale(3) rotate(0deg); opacity: 0; }
+}
+    /* Password Container: Flex, Rounded, Dark */
+    .pass-section {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #191919;
+      border-radius: 50px;
+      width: 310px;
+      box-shadow: 0 2px 12px #ff537024;
+      padding: 7px 9px 7px 17px;
+      gap: 0;
+    }
+    input[type="password"] {
+      border: none;
+      font-size: 1.1em;
+      outline: none;
+      background: transparent;
+      color: #fff;
+      flex: 1;
+      min-width: 0;
+      padding: 9px 0 9px 0;
+    }
+    input[type="password"]::placeholder {
+      color: #aaa;
+      opacity: 1;
+    }
+    .submit-btn {
+      margin-left: 10px;
+      margin-right: 2px;
+      background: #ff5370;
+      border: none;
+      border-radius: 50%;
+      width: 41px;
+      height: 41px;
+      color: #fff;
+      font-size: 1.34em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 7px #ff537055;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .submit-btn:hover, .submit-btn:focus {
+      background: #fff;
+      color: #ff5370;
+      outline: 2px solid #ff5370;
+    }
+    .shake {
+      animation: shake 0.4s;
+    }
+    @keyframes shake {
+      0% { transform: translateX(0);}
+      20% { transform: translateX(-12px);}
+      40% { transform: translateX( 12px);}
+      60% { transform: translateX(-8px);}
+      80% { transform: translateX(8px);}
+      100% { transform: translateX(0);}
+    }
+
+    .reveal {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+      transition: opacity 1s;
+    }
+    .reveal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .reveal h1 {
+      color: #e93c78;
+      font-size: 2.6em;
+      margin-bottom: 12px;
+    }
+    .reveal p {
+      font-size: 1.25em;
+      color: #333;
+      margin-bottom: 24px;
+      max-width: 400px;
+    }
+    .go-btn {
+      padding: 12px 36px;
+      border: none;
+      border-radius: 25px;
+      background: #ff5370;
+      color: #fff;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .go-btn:hover {
+      background: #fff;
+      color: #ff5370;
+      border: 2px solid #ff5370;
+    }
+    #msg {
+      color:#ff5370;
+      margin-top:16px;
+      min-height:24px;
+      font-size:1.05em;
+    }
+    /* Responsive for mobile */
+    @media (max-width: 400px) {
+      .heart-wrapper {
+        width: 120px;
+        height: 105px;
+      }
+      .heart {
+        width: 110px;
+        height: 110px;
+      }
+      .pass-section {
+        width: 94vw; max-width: 100vw;
+        padding: 7px 3px 7px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="heart-wrapper">
+      <!-- Gorgeous SVG Heart (mimics 💖 emoji style) -->
+      <svg class="heart" id="heartSVG" viewBox="0 0 72 72" fill="none">
+        <defs>
+          <radialGradient id="g1" cx="50%" cy="35%" r="75%" fx="60%" fy="40%">
+            <stop offset="0%" stop-color="#ffdbe6"/>
+            <stop offset="65%" stop-color="#ff5370"/>
+            <stop offset="100%" stop-color="#e93c78"/>
+          </radialGradient>
+          <radialGradient id="shine" cx="40%" cy="20%" r="35%">
+            <stop offset="0%" stop-color="#fff9" />
+            <stop offset="90%" stop-color="#ff537000" />
+          </radialGradient>
+        </defs>
+        <path d="M36 63
+          C36 63, 3 41.5, 3 23
+          C3 9.5, 21.5 6, 36 19.6
+          C50.5 6, 69 9.5, 69 23
+          C69 41.5, 36 63, 36 63Z"
+          fill="url(#g1)" stroke="#e93c78" stroke-width="2.6" filter="url(#f1)" />
+        <ellipse cx="26.5" cy="28" rx="6.8" ry="3.3" fill="url(#shine)" opacity="0.92"/>
+      </svg>
+    </div>
+    <form class="pass-section" id="passForm" autocomplete="off" onsubmit="return false;">
+      <input type="password" id="pwd" placeholder="Password" autocomplete="off" />
+      <button class="submit-btn" id="submitBtn" tabindex="0" aria-label="submit">&#8594;</button>
+    </form>
+    <div id="msg"></div>
+  </div>
+  <!-- Hidden Reveal Scene -->
+  <div class="reveal" id="revealScreen">
+    <h1>💕 Surprise! 💕</h1>
+    <p>
+      Meri Jaan, you have unlocked my heart!<br><br>
+      To aap mante ho aap mere dil pe Raaz karte ho
+    </p>
+    <button class="go-btn" onclick="window.location.href='/Scene1/HappyBirthday.html'">
+      Open Your Surprise
+    </button>
+  </div>
+  <script>
+    // Set your secret password here!
+    const PASSWORD = "Anjali";
+    const heart = document.getElementById('heartSVG');
+    const pwdBox = document.getElementById('pwd');
+    const submitBtn = document.getElementById('submitBtn');
+    const passForm = document.getElementById('passForm');
+    const msg = document.getElementById('msg');
+    const reveal = document.getElementById('revealScreen');
+    const audio = document.getElementById('sound');
+    function unlockHeart() {
+      heart.classList.add('break');
+      setTimeout(() => {
+        reveal.classList.add('active');
+        document.querySelector('.container').style.display = 'none';
+      }, 950);
+    }
+    submitBtn.addEventListener('click', handleSubmit);
+    passForm.addEventListener('submit', handleSubmit);
+    function handleSubmit(evt) {
+      evt.preventDefault();
+      msg.textContent = '';
+      if (pwdBox.value === PASSWORD) {
+        unlockHeart();
+      } else {
+        msg.textContent = "Try again, my love 💖";
+        heart.classList.add('shake');
+        setTimeout(() => heart.classList.remove('shake'), 390);
+        pwdBox.value = '';
+        pwdBox.focus();
+      }
+    }
+  </script>
+</body>
+</html>
